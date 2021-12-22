@@ -1,5 +1,8 @@
-import contacts from "../../db/contacts.json";
+import db from "../../db/db"
 
 export const listContacts = async () => {
-  return contacts;
+  const client = await db;
+  const collection = client.db().collection("contacts")
+  const result = await collection.find().toArray()
+  return result;
 };
