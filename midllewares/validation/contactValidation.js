@@ -1,12 +1,12 @@
 import Joi from "joi";
 
 const createSchema = Joi.object({
-  name: Joi.string().alphanum().min(2).max(30).required(),
+  name: Joi.string().min(2).max(30).required(),
   email: Joi.string().email().required(),
   phone: Joi.string().required(),
 });
 const updateSchema = Joi.object({
-  name: Joi.string().alphanum().min(2).max(30),
+  name: Joi.string().min(2).max(30),
   email: Joi.string().email(),
   phone: Joi.string(),
 }).or("name", "email", "phone");

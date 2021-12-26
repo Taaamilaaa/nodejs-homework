@@ -1,20 +1,14 @@
-import fs from "fs/promises";
-import path from "path";
-import { fileURLToPath } from "url";
-import contacts from "../../db/contacts.json";
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
+import db from "../../db/db";
+import { getCollection } from "./getCollection";
+import { ObjectId } from "mongodb";
 
 export const updateContact = async (contactId, body) => {
-  const index = contacts.findIndex((contact) => contact.id === contactId);
-  if (index !== -1) {
-    const updateContact = { id: contactId, ...contacts[index], ...body };
-     contacts[index] = updateContact
-    await fs.writeFile(
-      path.join(__dirname, "../../", "db", "contacts.json"),
-      JSON.stringify(contacts, null, 4)
-    );
-    return updateContact;
-  }
-  return null
+  const collection = await getCollection(db, "contacts");
+  const id = ObjectId(contactId);
+  const { value: result } = await collection.findOneAndUpdate(
+    { _id: id },
+    { $set: body },
+    { returnDocument: "after" }
+  );
+  return result;
 };
