@@ -1,8 +1,8 @@
-import model  from "../../../../model/contacts/index.js";
+import contactsRepository  from "../../../../repository";
 
 export const removeContactById = async (req, res, next) => {
   const { id } = req.params;
-  const resp = await model.removeContact(id);
+  const resp = await contactsRepository.removeContact(id);
   console.log(resp);
   if (resp) {
     res.status(200).json({"Deleted contact":resp});

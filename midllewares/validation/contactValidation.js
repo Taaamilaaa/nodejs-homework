@@ -13,7 +13,7 @@ const updateSchema = Joi.object({
 
 export const validateCreate = async (req, res, next) => {
   try {
-    const value = await createSchema.validateAsync(req.body);
+    await createSchema.validateAsync(req.body);
   } catch (error) {
     return res
       .status(400)
@@ -23,7 +23,7 @@ export const validateCreate = async (req, res, next) => {
 };
 export const validateUpdate = async (req, res, next) => {
   try {
-    const value = await updateSchema.validateAsync(req.body);
+   await updateSchema.validateAsync(req.body);
   } catch (error) {
     return res.status(400).json({message: error.message.replace(/"/g, "")});
   }

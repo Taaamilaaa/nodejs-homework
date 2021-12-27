@@ -1,9 +1,9 @@
-import model  from "../../../../model/contacts/index.js";
+import contactsRepository  from "../../../../repository";
 
 export const getContactById = async(req, res, next) => {
   const { id } = req.params;
  
-  const contact = await model.getContactById(id);
+  const contact = await contactsRepository.getContactById(id);
   if (contact) {
     res.status(200).json(contact);
     return;

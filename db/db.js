@@ -1,18 +1,26 @@
-import { MongoClient } from "mongodb";
+ import pkg from 'mongoose';
+const { connect, connection } = pkg;
 
 const uri = process.env.URI_DB;
 
-const client = new MongoClient(uri, {
+const db = connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
 
-const db = client.connect();
-
-process.on("SIGINT", async () => {
-    const client = await db;
-    client.close()
-    console.log("Connection DB closed");
+connection.on('connected', () => {
+  console.log('Mongoose is connected to db!');
+});
+connection.on('err', (err) => {
+  console.log(`Mongoose connection error: ${err.message}`);
+});
+connection.on('disconnected', () => {
+  console.log('Mongoose is disconnected from db!');
+});
+process.on("SIGINT", async () => {   
+  connection.close()
+  console.log("Connection DB closed");
+  process.exit(1);
 })
 
 export default db;
