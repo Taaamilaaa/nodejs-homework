@@ -1,8 +1,9 @@
 import contactsRepository  from "../../../../repository";
 
-export const updateContactById = async (req, res, next) => {
+export const updateFavoriteContactById = async (req, res, next) => {
   const { id } = req.params  
   const updateContact = await contactsRepository.updateContact(id, req.body)
+  console.log(updateContact);
   if (updateContact) {
     res.status(200).json(updateContact);
     return;
