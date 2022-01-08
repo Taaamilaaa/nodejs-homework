@@ -9,6 +9,6 @@ router.get("/:id", controllers.getContactById);
 router.delete("/:id",controllers.removeContactById);
 router.post("/", validateCreate, controllers.postNewContact);
 router.put("/:id", validateUpdate, controllers.updateContactById);
-router.patch("/:id/favorite",validateFavoriteUpdate, controllers.updateFavoriteContactById);
+router.patch("/:id/favorite",validateFavoriteUpdate, controllers.updateContactById);
 
 export default router;
