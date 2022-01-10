@@ -1,11 +1,13 @@
-import contactsRepository  from "../../../../repository";
+import contactsRepository from "../../../../repository/contacts";
+import { HttpCode } from "../../../../lib/constants";
 
 export const updateContactById = async (req, res, next) => {
+   const {id: userId}=req.user
   const { id } = req.params  
-  const updateContact = await contactsRepository.updateContact(id, req.body)
+  const updateContact = await contactsRepository.updateContact(userId, id, req.body)
   if (updateContact) {
-    res.status(200).json(updateContact);
+    res.status(HttpCode.OK).json(updateContact);
     return;
   }
-  res.status(404).json({"message": "Not found"});
+  res.status(HttpCode.NOT_FOUND).json({"message": "Not found"});
 };
