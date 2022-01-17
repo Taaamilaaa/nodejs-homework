@@ -1,6 +1,6 @@
 import { app } from "../app";
 import db from "../db/db";
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8000;
 
 db.then(() => {
   app.listen(PORT, () => {
