@@ -7,6 +7,4 @@ const router = Router();
 
 router.patch("/avatar", guard, upload.single('avatar'), uploadAvatar);
 
-
-
 export default router;
