@@ -13,9 +13,9 @@ export const signup = async (req, res, next) => {
     });
   }
   const data = await authService.create(req.body);
-  res.status(HttpCode.OK).json({
+  res.status(HttpCode.CREATE).json({
     status: "success",
-    code: HttpCode.OK,
+    code: HttpCode.CREATE,
     data,
   });
 };

@@ -14,7 +14,7 @@ export const login = async (req, res, next) => {
   }
   const token = authService.getToken(user);
   await authService.setToken(user.id, token);
-  res.status(HttpCode.OK).json({
+    res.status(HttpCode.OK).json({
     status: "success",
     code: HttpCode.OK,
     data: { user, token },
