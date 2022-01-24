@@ -34,7 +34,7 @@ class EmailService {
         action: {
           instructions: "To get started with our API, please click here:",
           button: {
-            color: "#22BC66", 
+            color: "#f1c0e8", 
             text: "Confirm your account",
             link: `${this.link}api/users/verify/${verifyToken}`,
           },
